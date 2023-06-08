@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
@@ -38,6 +40,17 @@ class MainActivityTest {
     @After
     fun tearDown() {
         Log.d("dataxx", "tearDown: ")
+    }
+
+    @Test
+    fun appTest(){
+        onView(withId(R.id.titleEditText)).perform(typeText("hi"))
+        onView(withId(R.id.descriptionEditText)).perform(typeText("sample"), closeSoftKeyboard())
+
+        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+        //device.pressHome()
+        val submitButton = device.findObject(By.text("SUBMIT"))
+        device.performActionAndWait({submitButton.click()}, Until.newWindow(), 1000)
     }
 
     @Test(expected = Exception::class)
