@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="Name"
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
         android:textStyle="bold" />
@@ -20,14 +20,14 @@
         android:id="@+id/titleEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="write title" />
+        android:hint="write name" />
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Description"
+        android:text="Quote"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
         android:id="@+id/descriptionEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="write title" />
+        android:hint="write quote" />
 
 
     <androidx.appcompat.widget.AppCompatButton

@@ -7,8 +7,8 @@ import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.matcher.ViewMatchers.assertThat
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
@@ -57,7 +57,7 @@ class MainActivityTest {
     fun startMainActivityFromHomeScreen() {
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         device.pressHome()
-        device.waitForWindowUpdate("com.internetpolice.app", 5000)
+        device.waitForWindowUpdate(BASIC_SAMPLE_PACKAGE, 5000)
         device.setOrientationRight();
         device.waitForWindowUpdate(null, 5000)
         device.setOrientationLeft()
@@ -143,15 +143,15 @@ class MainActivityTest {
     }
 
 
-//    @Test
-//    fun submitButton_test(){
-//        onView(withId(R.id.titleEditText)).perform(typeText("hi"))
-//        onView(withId(R.id.descriptionEditText)).perform(typeText("sample"), closeSoftKeyboard())
-//
-//        onView(withId(R.id.submitButton)).perform(click())
-//
-//        onView(withId(R.id.contentText)).check(matches(withText("hi sample")))
-//    }
+    @Test
+    fun submitButton_test(){
+        onView(withId(R.id.titleEditText)).perform(typeText("hi"))
+        onView(withId(R.id.descriptionEditText)).perform(typeText("sample"), closeSoftKeyboard())
+
+        onView(withId(R.id.submitButton)).perform(click())
+
+        onView(withId(R.id.contentText)).check(matches(withText("hi sample")))
+    }
 
     @Test
     fun bluetoothControlTest() {
