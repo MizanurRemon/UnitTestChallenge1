@@ -13,6 +13,6 @@ interface QuotesDao {
     @Insert
     suspend fun insertQuotes(quote: Quote)
 
-    @Query("SELECT * from Quote")
-    suspend fun getQuotes(): LiveData<List<Quote>>
+//    @Query("SELECT * from Quote")
+//    suspend fun getQuotes(): LiveData<List<Quote>>
 }
