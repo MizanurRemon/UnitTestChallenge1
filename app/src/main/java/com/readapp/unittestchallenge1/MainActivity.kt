@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatButton
+import com.readapp.unittestchallenge1.dao.QuotesDao
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var submitButton: AppCompatButton
     private lateinit var titleEditText: EditText
     private lateinit var descriptionText: EditText
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SecondActivity::class.java)
             intent.putExtra("message", "${titleEditText.text} ${descriptionText.text}")
             startActivity(intent)
+//          runBlocking {
+//              quotesDao.insertQuotes(Quote(1, "Hi", "Rem"))
+//          }
+
         }
     }
 
