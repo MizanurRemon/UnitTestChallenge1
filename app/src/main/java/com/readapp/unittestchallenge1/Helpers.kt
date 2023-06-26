@@ -1,21 +1,34 @@
 package com.readapp.unittestchallenge1
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-class Helpers {
-    suspend fun getUserName(): String{
+class Helpers(var dispatcher: CoroutineDispatcher) {
+    suspend fun getUserName(): String {
         delay(1000)
         return "remon"
     }
 
-    suspend fun getUser() : String{
+    suspend fun getUser(): String {
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000)
         }
 
         return "User - remon"
+    }
+
+    suspend fun getAddress(): String {
+        withContext(dispatcher) {
+            delay(5000)
+        }
+
+        return "address"
+    }
+
+
+    var value = false
+    suspend fun getAddressDetail() {
+        CoroutineScope(dispatcher).launch {
+            value = true
+        }
     }
 }

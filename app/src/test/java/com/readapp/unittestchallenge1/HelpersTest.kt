@@ -7,29 +7,21 @@ import kotlinx.coroutines.test.*
 import org.junit.Assert.*
 
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HelpersTest {
 
-    val scope = TestScope()
-    private val testDispatcher = StandardTestDispatcher()
 
-
-    @Before
-    fun setUp() {
-        Dispatchers.setMain(testDispatcher)
-    }
-
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain()
-    }
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
 
     @Test
     fun getUserName() {
-        val helpers = Helpers()
+        val helpers = Helpers(mainCoroutineRule.testDispatcher)
 
         runTest {
             helpers.getUserName()
@@ -37,8 +29,22 @@ class HelpersTest {
 
     }
 
-    @Test
-    fun getUser(){
 
+    @Test
+    fun addressTest() {
+        runTest {
+            Helpers(mainCoroutineRule.testDispatcher).getAddress()
+        }
+    }
+
+    @Test
+    fun getAddressDetailTest() {
+
+        var t = Helpers(mainCoroutineRule.testDispatcher)
+        runTest {
+            t.getAddressDetail()
+            mainCoroutineRule.testDispatcher.scheduler.advanceUntilIdle()
+            assertEquals(true, t.value)
+        }
     }
 }
