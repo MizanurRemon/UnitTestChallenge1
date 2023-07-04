@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 //              quotesDao.insertQuotes(Quote(1, "Hi", "Rem"))
 //          }
 
+            //remon
         }
     }
 
